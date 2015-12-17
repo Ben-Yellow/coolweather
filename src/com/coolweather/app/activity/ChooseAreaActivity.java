@@ -17,6 +17,7 @@ import android.app.DownloadManager.Query;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -97,7 +98,7 @@ public class ChooseAreaActivity extends Activity {
 	/**
 	 * 查询选中省内所有的市，优先从数据库查询，如果没有查询到再去服务器上查询
 	 */
-	private void queryCountries() {
+	private void queryCities() {
 		cityList = coolWeatherDB.loadCities(selectedProvince.getId());
 		if (cityList.size() > 0) {
 			dataList.clear();
@@ -116,7 +117,7 @@ public class ChooseAreaActivity extends Activity {
 	/**
 	 * 查询选中市内所有的县，优先从数据库查询，如果没有查询到再去服务器上查询
 	 */
-	private void queryCities() {
+	private void queryCountries() {
 		countryList = coolWeatherDB.loadcountries(selectedCity.getId());
 		if (countryList.size() > 0) {
 			dataList.clear();

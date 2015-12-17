@@ -21,8 +21,8 @@ public class Utility {
 				for (String p : allProvinces) {
 					String[] array = p.split("\\|");
 					Province province = new Province();
-					province.setProvinceName(array[0]);
-					province.setProvinceCode(array[1]);
+					province.setProvinceCode(array[0]);
+					province.setProvinceName(array[1]);
 					// 将解析出来的数据储存到Province表
 					coolWeatherDB.saveProvince(province);
 				}
@@ -43,7 +43,7 @@ public class Utility {
 				for (String c : allCities) {
 					String[] array = c.split("\\|");
 					City city = new City();
-					city.setCityName(array[0]);
+					city.setCityCode(array[0]);
 					city.setCityName(array[1]);
 					city.setProvinceId(provinceId);
 					// 将解析出来的数据储存到City表
@@ -58,16 +58,16 @@ public class Utility {
 	/**
 	 * 解析和处理服务器返回的县级数据
 	 * */
-	public static synchronized boolean handleCountriesResponse(
+	public static boolean handleCountriesResponse(
 			CoolWeatherDB coolWeatherDB, String response, int cityId) {
 		if (!TextUtils.isEmpty(response)) {
 			String[] allCountries = response.split(",");
 			if (allCountries != null && allCountries.length > 0) {
 				for (String c : allCountries) {
-					String[] array = c.split(",");
+					String[] array = c.split("\\|");
 					Country country = new Country();
-					country.setCountryName(array[0]);
-					country.setCountryCode(array[1]);
+					country.setCountryCode(array[0]);
+					country.setCountryName(array[1]);
 					country.setCityId(cityId);
 					// 将解析出来的数据储存到Country表
 					coolWeatherDB.saveCountry(country);

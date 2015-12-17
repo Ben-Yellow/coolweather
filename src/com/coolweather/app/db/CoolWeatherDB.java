@@ -120,7 +120,7 @@ public class CoolWeatherDB {
 		if (cursor.moveToFirst()) {
 			do {
 				Country country = new Country();
-				country.setId(cursor.getInt(cursor.getColumnIndex("country_id")));
+				country.setId(cursor.getInt(cursor.getColumnIndex("id")));
 				country.setCountryName(cursor.getString(cursor
 						.getColumnIndex("country_name")));
 				country.setCountryCode(cursor.getString(cursor
